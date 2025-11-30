@@ -4,28 +4,38 @@ import './../styles/App.css';
 
 const App = () => {
   const [input, setInput] = useState("")
+  const[size, setSize] = useState("");
 
+  function handleInput(e){
+    setInput(e.target.value);
+    setSize("");
+  }
+
+  function handleSize(e){
+    setSize(e.target.value);
+  }
   return (
     <div>
-      <h1>Select your gender:</h1>
+      <h2>Select your gender:</h2>
       <label>
-        Male: <input type="radio" name="gender" value="male" onChange={(e) => setInput(e.target.value)} />
+        <input type="radio" name="gender" value="male" onChange={(e) => handleInput(e)}/>
+        Male
       </label>
       <label>
-        Female: <input type="radio" name="gender" value="female" onChange={(e) => setInput(e.target.value)} />
+        <input type="radio" name="gender" value="female" onChange={(e) => handleInput(e)} />
+        Female
       </label>
-
-      <h1>Select your dress size:</h1>
+      <h2>Select your dress size:</h2>
       {
         input == "male" ? (
-          <select>
+          <select value={size} onChange={(e)=>handleSize(e)}>
             <option>Select size</option>
             <option>Small</option>
             <option>Medium</option>
             <option>Large</option>
           </select>
         ) : (
-          <select>
+          <select value={size} onChange={(e)=>handleSize(e)}>
             <option>Select size</option>
             <option>2</option>
             <option>4</option>
